@@ -5,9 +5,9 @@ export const GATEWAY_URL = "wss://derailed.one/gateway"
 
 export class Gateway extends EventEmitter {
 
-    ws: WebSocket
+    ws: WebSocket | null = null
     session_id: string | null = null
-    token: string | null
+    token: string | null = null
 
     constructor(){
         super();
@@ -37,10 +37,12 @@ export class Gateway extends EventEmitter {
     }
 
     async send(text: string) {
-        this.ws.send(text);
+        if(this.ws)
+            this.ws.send(text);
     }
 
     async send_json(data: object) {
-        this.ws.send(JSON.stringify(data, null, ""));
+        if (this.ws)
+            this.ws.send(JSON.stringify(data, null, ""));
     }
 }

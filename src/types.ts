@@ -1,15 +1,14 @@
-/**
- * @description snowflake is a id used to identify
- */
-type snowflake = string 
 
-interface UserData {
-	id:	snowflake
+export interface UserData {
+	id:	string
 	username:	string
 	discriminator:	string
 	email: string
 	password: string
-	verification: verification_object
+	verification: {
+		email: boolean | null,
+		phone: boolean | null
+	}
 }
 
-export { UserData }
+export type snowflake = string

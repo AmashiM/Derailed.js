@@ -7,15 +7,14 @@ import ClientSettings from "./ClientSettings";
 
 export default class Client extends EventEmitter {
 
-    guilds: Collection<string, Guild>
-    users: Collection<string, User>
-    ws: Gateway
+    guilds: Collection<string, Guild> = new Collection<string, Guild>();
+    users: Collection<string, User> = new Collection<string, User>();
+    ws: Gateway = new Gateway();
 
     csettings: ClientSettings = new ClientSettings();
 
-	settings: object
-	userdata: object
-	
+	settings = {}
+	userdata = {}
 
     get token(){ return this.ws.token }
     set token(value: string | null){ this.ws.token = value }
@@ -28,3 +27,4 @@ export default class Client extends EventEmitter {
         this.ws.close();
     }
 }
+console.log("hello world");
